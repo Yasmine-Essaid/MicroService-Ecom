@@ -30,9 +30,9 @@ public class BillingServiceApplication {
     @Bean
     CommandLineRunner start(BillRepository billRepository, ProductItemRepository productItemRepository, CustomerRestClient customerRestClient, ProductRestClient productRestClient){
         return args -> {
-            Collection<Product> products=productRestClient.AllProducts().getContent();
+            Collection<Product> products=productRestClient.getAllProducts().getContent();
             Long customerId=1L;
-            Customer customer=customerRestClient.findCustomerById(customerId);
+            Customer customer=customerRestClient.getCustomerById(customerId);
             if(customer==null)throw new RuntimeException("Customer not found");
             Bill bill=new Bill();
             bill.setBillDate(new Date());

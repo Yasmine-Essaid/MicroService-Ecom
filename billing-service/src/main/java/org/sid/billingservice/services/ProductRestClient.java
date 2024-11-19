@@ -6,12 +6,10 @@ import org.springframework.hateoas.PagedModel;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import java.awt.print.Pageable;
-
-@FeignClient(name = "INVENTORY-SERVICE")
+@FeignClient(name = "inventory-service")
 public interface ProductRestClient {
-    @GetMapping(path = "/products/{id}")
-    Product findProductById(@PathVariable("id") Long id);
-    @GetMapping(path = "/products")
-    PagedModel<Product> AllProducts();
+    @GetMapping("/products/{id}")
+    Product getProductById(@PathVariable Long id);
+    @GetMapping("/products")
+    PagedModel<Product> getAllProducts();
 }

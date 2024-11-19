@@ -2,11 +2,16 @@ package org.sid.billingservice.services;
 
 import org.sid.billingservice.model.Customer;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.data.web.PagedModel;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@FeignClient(name = "CUSTOMER-SERVICE", url = "http://localhost:9081")
+@FeignClient(name = "customer-service")
 public interface CustomerRestClient {
-    @GetMapping(path="/customers/{id}")
-    Customer findCustomerById(@PathVariable Long id);
+    @GetMapping("/api/customers/{id}")
+    Customer getCustomerById(@PathVariable Long id);
+
+    @GetMapping("/api/customers")
+    PagedModel<Customer> getAllCustomers();
+
 }
